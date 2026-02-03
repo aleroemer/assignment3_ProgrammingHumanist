@@ -95,3 +95,7 @@ for word, count in top_100_great_exp:
 with open('great_exp_unique.txt', 'w', encoding='utf-8') as file:
     for word in great_exp_unique:
         file.write(word + '\n')
+
+print(f"\nFound {len(great_exp_unique)} unique Great Expectations words")
+
+print(great_exp_unique)
