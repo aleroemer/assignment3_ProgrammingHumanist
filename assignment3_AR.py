@@ -92,4 +92,6 @@ for word, count in top_100_great_exp:
         great_exp_unique.append(word)
 
 # write to file 
-with open()
+with open('great_exp_unique.txt', 'w', encoding='utf-8') as file:
+    for word in great_exp_unique:
+        file.write(word + '\n')
