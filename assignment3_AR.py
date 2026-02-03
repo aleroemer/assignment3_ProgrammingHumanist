@@ -11,9 +11,9 @@ from collections import Counter
 nlp = spacy.load("en_core_web_sm")
 print("Libraries loaded successfully!")
 
-# 1.a Read the Dracula text file                                                                              
-with open('dracula.txt', 'r', encoding='utf-8') as file:                                                  
-      dracula_text = file.read() 
+# 1.a Read the Dracula text file
+with open('dracula.txt', 'r', encoding='utf-8') as file:
+    dracula_text = file.read() 
 
 # Process Dracula text with SpaCy                                                                                
 print("\nProcessing Dracula...")                                                                                 
