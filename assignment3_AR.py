@@ -57,6 +57,8 @@ for token in great_exp_doc:
     #Keep the word (lowercase)
     great_exp_filtered.append(token.text.lower())
 
+print(f"Great Expectations: {len(great_exp_filtered)} words after filtering")
+
 # 3.a Count how many times each word appears in Dracula                                                              
 dracula_counts = Counter(dracula_filtered)
 
@@ -80,3 +82,14 @@ with open('dracula_unique.txt', 'w', encoding='utf-8') as file:
         file.write(word + '\n')
 
 print(f"\nFound {len(dracula_unique)} unique Dracula words")
+
+# 5. Do the same for great expectations
+top_100_great_exp = great_exp_counts.most_common(100)
+
+great_exp_unique = []
+for word, count in top_100_great_exp:
+    if word not in dracula_counts:
+        great_exp_unique.append(word)
+
+# write to file 
+with open()
