@@ -19,7 +19,6 @@ with open('dracula.txt', 'r', encoding='utf-8') as file:
 print("\nProcessing Dracula...")                                                                                 
 dracula_doc = nlp(dracula_text) 
 
-
 # 1.b Read Great Expectations text file
 with open('great_expectations.txt', "r", encoding='utf-8') as file:
     great_exp_text = file.read()
@@ -55,16 +54,29 @@ for token in great_exp_doc:
         continue
     if token.is_punct or token.is_space:
         continue
+    #Keep the word (lowercase)
     great_exp_filtered.append(token.text.lower())
 
-print(f"Great Expectations: {len(great_exp_filtered)} words after filtering")
+# 3.a Count how many times each word appears in Dracula                                                              
+dracula_counts = Counter(dracula_filtered)
 
-# 3. Count how many times each word appears in Dracula                                                              
-dracula_counts = Counter(dracula_filtered)                                                                       
+# 3.b Count how many times each word appears in Great Expectations
+great_exp_counts = Counter(great_exp_filtered)
                                                                                                                    
-# See the top 10 most common words                                                                               
-print("\nTop 10 most common words in Dracula:")                                                                  
-print(dracula_counts.most_common(10))                                                                            
-                                                                                                                 
-# See how many unique words there are                                                                            
-print(f"\nTotal unique words in Dracula: {len(dracula_counts)}")  
+
+# 4. Among top 100 words Dracula, find thos which do not occur in GE
+# write these words to a file called dracula_unique.txt
+
+top_100_dracula = dracula_counts.most_common(100)
+
+dracula_unique = []
+for word, count in top_100_dracula:
+    if word not in great_exp_counts:
+        dracula_unique.append(word)
+
+# Write to file
+with open('dracula_unique.txt', 'w', encoding='utf-8') as file:
+    for word in dracula_unique:
+        file.write(word + '\n')
+
+print(f"\nFound {len(dracula_unique)} unique Dracula words")
