@@ -48,7 +48,16 @@ print(f"Dracula: {len(dracula_filtered)} words after filtering")
 
 ## 2.b for Great Expectations
 great_exp_filtered = []
-for token in great
+for token in great_exp_doc:
+    if token.ent_type_ in ['PERSON', 'GPE', 'LOC']:
+        continue
+    if token.pos_ in ['VERB', 'ADV']:
+        continue
+    if token.is_punct or token.is_space:
+        continue
+    great_exp_filtered.append(token.text.lower())
+
+print(f"Great Expectations: {len(great_exp_filtered)} words after filtering")
 
 # 3. Count how many times each word appears in Dracula                                                              
 dracula_counts = Counter(dracula_filtered)                                                                       
